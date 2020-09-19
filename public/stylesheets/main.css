@@ -4,6 +4,10 @@
 .thumbnail {
     padding: 0;
 }
-.thumbnail.caption-full {
+.thumbnail .caption-full {
     padding: 9px;
+}
+
+#delete-form {
+    display: inline;
 }
