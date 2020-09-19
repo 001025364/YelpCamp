@@ -24,7 +24,7 @@ router.post("/campgrounds", isLoggedIn, function(req, res) {
         username: req.user.username
     }
     
-    var newCampground = {name: name, image: image, description: desc}
+    var newCampground = {name: name, image: image, description: desc, author: author}
     
     // campgrounds.push(newCampground);
     // Create a new campground and save to DB
@@ -50,6 +50,7 @@ router.get("/campgrounds/:id", function(req, res){
         if (err) {
             console.log(err);
         } else {
+            console.log(foundCampground);
             res.render("campgrounds/show", {campground : foundCampground});
         }
     });
@@ -57,9 +58,9 @@ router.get("/campgrounds/:id", function(req, res){
 });
 
 router.get("/campgrounds/:id/edit", checkCampgroundOwnership, function(req, res){
-        Campground.findById(req.params.id, function(err, foundCampground){
-            res.render("campgrounds/edit", {campground: foundCampground});
-        }); 
+    Campground.findById(req.params.id, function(err, foundCampground){
+        res.render("campgrounds/edit", {campground: foundCampground});
+    }); 
 });
 
 router.post("/campgrounds/:id", checkCampgroundOwnership, function(req, res){
